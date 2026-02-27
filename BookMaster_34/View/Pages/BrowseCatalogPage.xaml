@@ -87,7 +87,7 @@
                         <ColumnDefinition Width="10"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <TextBlock Text="Страница"/>
 
                     <Button Name="PreviewsPage" Grid.Column="2" Content="&lt;" Click="PreviewsPage_Click"/>
