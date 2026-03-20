@@ -1,0 +1,55 @@
+﻿<Window x:Class="BookMaster_34.View.Windows.BookAuthorsDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookMaster_34.View.Windows"
+        mc:Ignorable="d" Title="Подробнаяя информация об авторах" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox Name="AuthorsCmb" SelectionChanged="AuthorsCmb_SelectionChanged"/>
+        
+
+        <TextBlock Grid.Row="2">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0:dd MMMM yyyy} - {1:dd MMMM yyyy}" 
+                              ConverterCulture="ru-RU">
+                    <Binding Path="Author.BirthDate"/>
+                    <Binding Path="Author.DeathDate"/>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
+        <TextBlock Grid.Row="4"  Text="Биография" FontWeight="SemiBold"/>
+
+        <ScrollViewer Grid.Row="6" VerticalScrollBarVisibility="Auto" 
+            Padding="0 0 5 0">
+            <TextBlock Text="" VerticalAlignment="Top"></TextBlock>
+        </ScrollViewer>
+            
+
+        <TextBlock Name="HyperlinkTbl" Grid.Row="8">
+            <Hyperlink Name="WikipediaHl" NavigateUri="{Binding Author.Wikipedia}"
+                       RequestNavigate="WikipediaHl_RequestNavigate">
+                Больше информации на Wikipedua
+            </Hyperlink>
+        </TextBlock>
+
+        <Button Name="CloseBtn" Grid.Row="10" HorizontalAlignment="Left" Content="Закрыть" Click="CloseBtn_Click"/>
+    </Grid>
+</Window>

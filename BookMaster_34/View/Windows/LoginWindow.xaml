@@ -5,47 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookMaster_34.View.Windows"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
-    <Grid>
+        Title="LoginWindow" SizeToContent="Height" Width="500" ResizeMode="NoResize">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 50">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="550"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-        </Grid>
-
-
-
-        <Image x:Name="Logo" Source="/Resources/logo.png" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"/>
-        <TextBlock Text="Login" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="595,0,0,0" FontSize="60"/>
-        
-
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="350"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="15"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="15"/>
-                <RowDefinition Height="40"/>
-            </Grid.RowDefinitions>
-
-            <TextBlock>
-                
-            </TextBlock>
-        </Grid>
-
-
-        <Button Name="LoginBtn" Content="Войти" Click="LoginBtn_Click" Grid.Row="1"/>
+        <Button Name="LoginBtn" Content="Войти" Click="LoginBtn_Click"/>
     </Grid>
 </Window>

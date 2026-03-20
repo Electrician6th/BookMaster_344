@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookMaster_34.Models;
+using BookMaster_34.View.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,20 @@ namespace BookMaster_34.View.Pages
     /// </summary>
     public partial class BrowseCatalogPage : Page
     {
+        // Создаем локальный список для единоразового вытягивания данных из таблицы БД 
+        private readonly List<Book> _books;
+
+        //Создаем поле для хранения выбранной книги;
+        private Book _selectedBook;
         public BrowseCatalogPage()
         {
             InitializeComponent();
+
+            // Заполняем локальный список
+            
+            _books = App.GetContext().Books.ToList();
+
+            LoadData();
         }
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
@@ -33,6 +46,29 @@ namespace BookMaster_34.View.Pages
         private void PreviewsPage_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void LoadData()
+        {
+            BookAuthorLv.ItemsSource = _books;
+        }
+
+        private void BookAuthorLv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _selectedBook = (Book)BookAuthorLv.SelectedItem;
+            BookDotailsGrid.DataContext = _books;
+        }
+
+        private void BookAuthorsDetails_Click(object sender, RoutedEventArgs e)
+        {
+            if (_selectedBook != null)
+            {
+                BookAuthorsDetailsWindow BookAuthorsDetailsWindow = new BookAuthorsDetailsWindow(_selectedBook.BookAuthors);
+                BookAuthorsDetailsWindow.ShowDialog();
+            }
+               
+
+            
         }
     }
 }
