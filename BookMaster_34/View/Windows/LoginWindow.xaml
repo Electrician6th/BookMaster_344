@@ -12,6 +12,8 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -20,6 +22,16 @@
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
 
-        <Button Name="LoginBtn" Content="Войти" Click="LoginBtn_Click"/>
+        <TextBlock Text="Логин:"/>
+        <TextBox Name="LoginTb"  Grid.Column="2"/>
+
+        <TextBlock Grid.Row="2" Text="Пароль:"/>
+        <PasswordBox Name="PasswordPb" Grid.Row="2" Grid.Column="2" PasswordChar="*"/>
+
+        <CheckBox Name="RememberMrCmb" Grid.Row="4" Grid.Column="2" Content="Запомнить меня"/>
+        
+        <Button Name="LoginBtn" Content="Войти" Grid.Column="2" Grid.Row="6" Width="130" HorizontalAlignment="Left" Click="LoginBtn_Click"/>
+
+        <Button Name="Cancel" Grid.Row="6" Grid.Column="2" Content="Отмена" Width="130" HorizontalAlignment="Right" Click="Cancel_Click"/>
     </Grid>
 </Window>
