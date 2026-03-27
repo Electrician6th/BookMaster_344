@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookMaster_34.View.Windows"
         mc:Ignorable="d"
-        Title="LoginWindow" SizeToContent="Height" Width="500" ResizeMode="NoResize">
+        Title="LoginWindow" SizeToContent="Height" Width="500" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 50">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
