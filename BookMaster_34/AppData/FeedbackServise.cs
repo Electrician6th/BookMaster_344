@@ -27,7 +27,7 @@ namespace BookMaster_34.AppData
         }
         public static MessageBoxResult Question(string message)
         {
-            return MessageBox.Show(message, "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            return MessageBox.Show(message, "Вопрос", MessageBoxButton.YesNo,  MessageBoxImage.Question);
         }
     }
 }
