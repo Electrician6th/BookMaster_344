@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookMaster_34.View.Windows"
         mc:Ignorable="d"
         Title="LoginWindow" SizeToContent="Height" Width="500" ResizeMode="NoResize" Loaded="Window_Loaded">
-    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 50">
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 50" Background="Gray">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>

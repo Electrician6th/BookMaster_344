@@ -1,20 +1,6 @@
 ﻿using BookMaster_34.AppData;
 using BookMaster_34.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BookMaster_34.View.Windows
 {
@@ -26,6 +12,8 @@ namespace BookMaster_34.View.Windows
         public LoginWindow()
         {
             InitializeComponent();
+
+            
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
@@ -36,6 +24,8 @@ namespace BookMaster_34.View.Windows
                 
                 if (administrator != null)
                 {
+                    if (RememberMrCmb.IsChecked == true) CredentialsService.SaveCredentials(LoginTb.Text,PasswordPb.Password);
+
                     FeedbackServise.Information("Успешная авторизация.");
 
                   //DialogResult возвращает результат работы диалогового окна
@@ -45,12 +35,14 @@ namespace BookMaster_34.View.Windows
                 {
                     FeedbackServise.Error("Пользователь не найден.");
                 }
+
+                CredentialsService.Administrator=administrator;
             }
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-
+            DialogResult = false;
         }
          private bool Validate()
          {
@@ -69,5 +61,15 @@ namespace BookMaster_34.View.Windows
 
             return true;
          }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (CredentialsService.AutoLogin && !string.IsNullOrWhiteSpace(CredentialsService.SavedLogin))
+            {
+                LoginTb.Text = CredentialsService.SavedLogin;
+                PasswordPb.Password = CredentialsService.SavedPassword;
+                RememberMrCmb.IsChecked = CredentialsService.AutoLogin;
+            }
+        }
     }
 }

@@ -5,10 +5,68 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookMaster_34.View.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="ManageCustomersPage">
+      d:DesignHeight="1004" d:DesignWidth="1920"
+      Title="Клиент" >
 
-    <Grid>
-        <TextBlock Text="страница для управления клиентами" FontSize="40"/>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="20 0 20 0">
+            <Grid.RowDefinitions>   
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+
+
+            <TextBlock Grid.Row="1" Text="Клиент"/>
+            <TextBox Name="CustomerIDTb" Grid.Row="2" />
+
+            <TextBlock Grid.Row="4" Text="Имя"/>
+            <TextBox Name="NameTb" Grid.Row="5" Grid.Column="0"/>
+
+            <Button Name="SearchBtn" Grid.Row="7" Content="🔎Поиск" Grid.Column="0" Click="SearchBtn_Click"/>
+
+            <Grid Grid.Row="9">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Button Name ="EditBtn" Grid.Row="9" Grid.Column="0"  Content="Редактировать" Click="EditBtn_Click"/>
+
+                <Button Name="AddBtn"  Grid.Row="9" Grid.Column="2"  Content="Добавлять" Click="AddBtn_Click"/>
+            
+            
+            
+            </Grid>
+           
+           
+        </Grid>
+
+            <ListView Name="CustomerLv" Grid.Column="2" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ИД" Width="70" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="Имя" Width="120" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Адрес" Width="150" DisplayMemberBinding="{Binding Address}"/>
+                        <GridViewColumn Header="Индекс" Width="100" DisplayMemberBinding="{Binding Zip}"/>
+                        <GridViewColumn Header="Город" Width="100" DisplayMemberBinding="{Binding City.Name}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        
     </Grid>
 </Page>

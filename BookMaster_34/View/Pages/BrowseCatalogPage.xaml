@@ -16,8 +16,10 @@
         </Grid.ColumnDefinitions>
 
         <!--Панель поиска-->
+        <Border Background="{DynamicResource Gray}"/>
         <Grid Margin="20">
-            <Grid.RowDefinitions>
+       
+        <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="50"/>
@@ -38,13 +40,13 @@
             <Image Grid.ColumnSpan="3" Source="/Resources/logo.png"/>
 
 
-            <TextBlock Grid.Row="2" Text="Название:"/>
+            <TextBlock Grid.Row="2" Text="Название:" Name="BookTitleTb"/>
             <TextBox Grid.Row="2" Grid.Column="2"/>
 
-            <TextBlock Grid.Row="4" Text="Авторы:"/>
+            <TextBlock Grid.Row="4" Text="Авторы:" Name="BookAuthorsTb"/>
             <TextBox Grid.Row="4" Grid.Column="2"/>
 
-            <TextBlock Grid.Row="6" Text="Жанры:"/>
+            <TextBlock Grid.Row="6" Text="Жанры:" Name="BookSubjectsTb"/>
             <TextBox Grid.Row="6" Grid.Column="2"/>
 
             <Button Name="SearchBtn" Grid.Row="8" Grid.Column="2"
@@ -56,12 +58,12 @@
         <Grid Grid.Column="2" Margin="0 20 20 20"> 
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="15"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             
             <!--Результаты поиска-->
-            <Grid>
+            <Grid Name="SearchResultsGrid" Grid.Column="2" Visibility="Collapsed" Margin="0 20 20 20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="5"/>
@@ -110,10 +112,10 @@
             </Grid>           
             
             <!--Изменения размеров гридов-->
-            
-            
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 10"/>
+
             <!--Информация о выбранной книге-->
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2" Name="BookDotailsGrid" Visibility="Collapsed">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="10"/>
@@ -121,7 +123,7 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Текстовый инофрмация-->
-                <Grid Name="BookDotailsGrid">
+                <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     
