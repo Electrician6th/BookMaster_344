@@ -52,7 +52,9 @@ namespace BookMaster_34.View.Pages
             }
             else
             {
-                List<Book> fillerwedBooks = _books.Where(book => book.Title.Contains(booktitle,StringComparison.OrdinalIgnoreCase) && book.Authors.Contains(bookauthors, StringComparison.OrdinalIgnoreCase) && book.Subject.Contains(booksubjects, StringComparison.OrdinalIgnoreCase)).ToList();
+                List<Book> fillerwedBooks = _books.Where(book => book.Title.Contains(booktitle,StringComparison.OrdinalIgnoreCase)
+                && book.Authors.Contains(bookauthors, StringComparison.OrdinalIgnoreCase)
+                && book.Subject.Contains(booksubjects, StringComparison.OrdinalIgnoreCase)).ToList();
 
                 LoadData(fillerwedBooks);
             }
@@ -92,6 +94,16 @@ namespace BookMaster_34.View.Pages
                 BookAuthorsDetailsWindow.ShowDialog();
             }
                
+        }
+
+        private void CurrentPageTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void NextPageBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -30,12 +30,30 @@ namespace BookMaster_34.View.Windows
         public ManageCustomerWindow()
         {
             InitializeComponent();
-
-
             _cities = App.GetContext().Cities.ToList();
 
             LoadCities();
+            Title = "Добаление читателя";
+            Visibility= Visibility.Visible;
+            EditBtn.Visibility= Visibility.Collapsed;
+            CustomerIDTb.Text = GenerateId();
+         
         }
+
+        public ManageCustomerWindow(Customer selectedCustomer)
+        {
+            InitializeComponent();
+            _cities = App.GetContext().Cities.ToList();
+            LoadCities();
+            Title = "Редактировать читателя";
+            SaveBtn.Visibility = Visibility.Collapsed;
+            EditBtn.Visibility = Visibility.Visible;
+            CustomerIDTb.Text = selectedCustomer.Id;
+
+            DataContext = selectedCustomer;
+        }
+      
+        
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -44,8 +62,10 @@ namespace BookMaster_34.View.Windows
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-
+           
+          
         }
+
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -81,6 +101,7 @@ namespace BookMaster_34.View.Windows
 
                     App.GetContext().SaveChanges();
                     FeedbackServise.Information("Читатель успешно добавлен!");
+                    DialogResult = true;
                 }
 
             }
@@ -94,5 +115,29 @@ namespace BookMaster_34.View.Windows
         {
             CityCmb.ItemsSource = _cities;
         }
+        private void EditBtnClick(object sender, EventArgs e)
+        {
+            EditBtnClick(sender, e);
+            try
+            {
+                App.GetContext().SaveChanges();
+                FeedbackServise.Information("Данные читателя успешно изменены!");
+            }
+            catch (Exception ex)
+            {
+                FeedbackServise.Error(ex);
+            }
+            
+        }
+
+        private string GenerateId()
+        {
+            int lastId = Convert.ToInt32(App.GetContext().Customers.Max(x => x.Id).Substring(1));
+            //=> "C1015" => "1015"=>1015
+
+            ++lastId;// =>1015 +1 +>1016
+            return $"C{lastId}";//"C1016"
+        }
+        
     }
 }

@@ -36,8 +36,12 @@
             <TextBlock Text="ИД:"/>
             <TextBlock Grid.Row="2" Text="Имя"/>
             <TextBlock  Grid.Row="4" Text="Адрес"/>
-            <TextBlock  Grid.Row="6" Text="Город"/>
+            <TextBlock  Grid.Row="6" Text="Индекс/город"/>
+           
             
+            <!--IsReadnly=True -->
+            <TextBox Name="CustomerIDTb" Grid.Column="2" IsReadOnly="True" Text="{Binding Id, Mode=TwoWay}"  BorderBrush="Gray" Background="Gray"/>
+
             <TextBox Name="IDclientTb" Grid.Column="2" Width="200" HorizontalAlignment="Left"/>
 
             <TextBlock Text="Имя клиента:" Grid.Row="2"/>
@@ -46,7 +50,7 @@
             <TextBlock Text="Адрес клиента:" Grid.Row="4"/>
             <TextBox Name="AddressClientTb" Grid.Column="2" Grid.Row="4" Width="200" HorizontalAlignment="Left"/>
 
-            <TextBlock Text="Почтовый индекс:" Grid.Row="6"/>
+            <TextBlock Text="Индекс/город:" Grid.Row="6"/>
 
             <TextBox Name="indexTb" Grid.Row="6" Grid.Column="2" Margin="0 5 130 0"/>
 

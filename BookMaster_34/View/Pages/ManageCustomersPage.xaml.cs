@@ -62,10 +62,9 @@ namespace BookMaster_34.View.Pages
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            var window = new ManageCustomerWindow();
-            if (window.ShowDialog() == true)
+            ManageCustomerWindow manageCustomerWindow = new ManageCustomerWindow();
             {
-                CustomerLv.ItemsSource = App.GetContext().Customers.ToList();
+                CustomerLv.ItemsSource =_customers= App.GetContext().Customers.ToList();
             }
 
 

@@ -100,9 +100,9 @@
 
                     <Button Name="PreviewsPage" Grid.Column="2" Content="&lt;" Click="PreviewsPage_Click"/>
                     
-                    <TextBox Name="CurrentPageTb" Grid.Column="4"/>
+                    <TextBox Name="CurrentPageTb" Grid.Column="4" TextChanged="CurrentPageTb_TextChanged"/>
                     
-                    <Button Name="NextPageBtn" Grid.Column="6" Content="&gt;"/>
+                    <Button Name="NextPageBtn" Grid.Column="6" Content="&gt;" Click="NextPageBtn_Click"/>
                     
                     <TextBlock Name="TotalPagesTbl" Grid.Column="8" Text="из 4"/>
                     
