@@ -98,13 +98,13 @@
 
                     <TextBlock Text="Страница"/>
 
-                    <Button Name="PreviewsPage" Grid.Column="2" Content="&lt;" Click="PreviewsPage_Click"/>
+                    <Button Name="PreviewsPageBtn" Grid.Column="2" Content="&lt;" Click="PreviewsPageBtn_Click"  Cursor="Hand"/>
                     
                     <TextBox Name="CurrentPageTb" Grid.Column="4" TextChanged="CurrentPageTb_TextChanged"/>
                     
                     <Button Name="NextPageBtn" Grid.Column="6" Content="&gt;" Click="NextPageBtn_Click"/>
                     
-                    <TextBlock Name="TotalPagesTbl" Grid.Column="8" Text="из 4"/>
+                    <TextBlock Name="TotalPagesTbl" Grid.Column="8"/>
                     
                     <TextBlock Name="TotalBooksTbl" Grid.Column="12" Text="{Binding ElementName=BookAuthorLv, Path=Items.Count, StringFormat={}{0} книг найдено}"/>
                     
@@ -194,7 +194,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.ColumnSpan="3" Source="/Resources/booklogo.jpg"/>
-                    <Button Grid.Row="2" Content="◀"/>
+                    <Button Grid.Row="2" Content="◀" />
                     <Button Grid.Row="2" Grid.Column="2" Content="▶"/>
                 </Grid>
             </Grid>

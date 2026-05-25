@@ -18,6 +18,9 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="{DynamicResource LightGreen2}"/>
                         </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="{DynamicResource Gray}"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
             </ControlTemplate>
         </Setter.Value>

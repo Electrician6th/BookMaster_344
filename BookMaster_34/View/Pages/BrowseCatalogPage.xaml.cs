@@ -1,4 +1,5 @@
-﻿using BookMaster_34.Models;
+﻿using BookMaster_34.AppData;
+using BookMaster_34.Models;
 using BookMaster_34.View.Windows;
 using System;
 using System.Collections.Generic;
@@ -25,18 +26,25 @@ namespace BookMaster_34.View.Pages
         // Создаем локальный список для единоразового вытягивания данных из таблицы БД 
         private  List<Book> _books;
 
+        // Создаем контроллер пагинации
+        private readonly PaginationController _paginationController = new(); 
+
         //Создаем поле для хранения выбранной книги;
         private Book _selectedBook;
         public BrowseCatalogPage()
         {
             InitializeComponent();
 
-            // Заполняем локальный список
-            
-            _books = App.GetContext().Books.ToList();
+            // Загружаем в контреллер пагинации список книг 
+            _paginationController.Load(App.GetContext().Books.ToList());
 
-           
+            // Обновляем интерфейс
+            RefreshUI();
+
+
         }
+
+        
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -48,27 +56,22 @@ namespace BookMaster_34.View.Pages
             
             if (string.IsNullOrWhiteSpace(booktitle)&& string.IsNullOrWhiteSpace(bookauthors) && string.IsNullOrWhiteSpace(booksubjects))
             {
-                LoadData(_books);
+                RefreshUI();
             }
             else
             {
-                List<Book> fillerwedBooks = _books.Where(book => book.Title.Contains(booktitle,StringComparison.OrdinalIgnoreCase)
-                && book.Authors.Contains(bookauthors, StringComparison.OrdinalIgnoreCase)
-                && book.Subject.Contains(booksubjects, StringComparison.OrdinalIgnoreCase)).ToList();
 
-                LoadData(fillerwedBooks);
+              
+
+                RefreshUI();
             }
                 
         }
 
-        private void PreviewsPage_Click(object sender, RoutedEventArgs e)
+        private void PreviewsPageBtn_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void LoadData(List <Book> booksList)
-        {
-            BookAuthorLv.ItemsSource = booksList;
+            _paginationController.GoToPage(_paginationController.CurrentPage - 1);
+            RefreshUI();
         }
 
         private void BookAuthorLv_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -98,12 +101,28 @@ namespace BookMaster_34.View.Pages
 
         private void CurrentPageTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (int.TryParse (CurrentPageTb.Text, out int page))
+            {
+                _paginationController.CurrentPage = page;
+                RefreshUI();
+            }
         }
 
         private void NextPageBtn_Click(object sender, RoutedEventArgs e)
         {
+            _paginationController.GoToPage(_paginationController.CurrentPage + 1);
+            RefreshUI();
+        }
+    
+        public void RefreshUI()
+        {
+            BookAuthorLv.ItemsSource = _paginationController.GetCurrentPage();
+            TotalBooksTbl.Text = $"Найдено {_paginationController.BooksCount} книг";
+            TotalBooksTbl.Text = $"из {_paginationController.TotatPages}";
+             CurrentPageTb.Text = _paginationController.CurrentPage.ToString();
 
+            PreviewsPageBtn.IsEnabled = _paginationController.CanGoPrevious;
+            NextPageBtn.IsEnabled = _paginationController.CanGoNext;
         }
     }
 }
